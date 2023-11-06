@@ -8,14 +8,14 @@ document.write("\" Be who you are and say what you feel, "
 + "-Dr. Seuss" + "<br>");
 
 var B = " Concatenated" + " String" // Var two
-document.write(B + "<br>")
+document.write(B + "<br>");
 
 //Var three
 var Family = "The Arezzinis", Dad = "Jeremiah", Mom = "Hermoine", 
     Daughter = "Penny", Son = "Zorro"; 
 document.write (Dad + "<br>");
 
-document.write(3 + 3);
+document.write(3 + 3 + "<br>");
 
 // Create two variables
 var Sent1 = "This is the beginning of the string";
@@ -26,3 +26,5 @@ var concatenatedSentence = Sent1 + Sent2;
 
 // Display the concatenated sentence
 console.log(concatenatedSentence);
+
+
