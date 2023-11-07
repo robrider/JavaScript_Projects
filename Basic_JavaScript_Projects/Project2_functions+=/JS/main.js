@@ -14,10 +14,6 @@ function changeText() {
     paragraph.innerHTML = "This paragraph is not the same as the other!";
 }
 
-var additionalText = " This is additional text.";
-var paragraph = document.getElementById("myParagraph");
-paragraph.innerHTML += additionalText;
-
 // Call the function when the page loads
 window.onload = concatenateText;
 
