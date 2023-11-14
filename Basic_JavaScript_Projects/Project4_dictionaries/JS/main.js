@@ -1,7 +1,4 @@
 // Function to display a value from the dictionary
-
-//Run these for the Dictionary submission
-
 // Create a simple JavaScript dictionary
 function my_Dictionary() {
     var Bicycle = {
@@ -12,7 +9,7 @@ function my_Dictionary() {
         Sound: "Ding"
     };
 delete Bicycle.Sound;
-//document.getElementById("Dictionary"). innerHTML="Hello, World";
+//document.getElementById("Dictionary"). innerHTML="Hello, World"; entry to follow the path of the program!
 document.getElementById("Dictionary"). innerHTML=Bicycle.Sound;
 }
 ``
