@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Check</title>
+</head>
+
+<body>
+    <!-- Example buttons with onclick attributes -->
+    <button type="button" onclick="checkTime()">Click to check time</button>
+    <button type="button" onclick="getDate()">Click Here</button>
+    <p id="demo"></p>
+
+    <p>Write your age:</p>
+    <input id="Age" value="" />
+    <p id="How_old_are_you?"></p>
+    <button onclick="Age_Function()">Click here</button>
+
+    <script>
+        const d = new Date();
+        document.getElementById("demo").innerHTML = d;
+
+        let hour = new Date().getHours();
+        let greeting;
+
+        // Check the time and set the greeting message
+        if (hour < 20) {
+            greeting = "Good day";
+        } else {
+            greeting = "Good evening";
+        }
+
+        document.getElementById("demo").innerHTML = greeting;
+
+        // Function to check the age and display a message
+        function Age_Function() {
+            var Age = document.getElementById("Age").value;
+            var Vote = Age >= 18 ? "You are old enough to vote!" : "You are not old enough to vote!";
+            document.getElementById("How_old_are_you?").innerHTML = Vote;
+        }
+
+    </script>
+
+    <!-- Include the JavaScript file -->
+    <script src="JS\main.js"></script>
+</body>
+
+</html>
