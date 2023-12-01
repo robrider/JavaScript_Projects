@@ -1,3 +1,21 @@
+//Countdown Function
+function countdown() {
+    var secondsInput = document.getElementById("seconds");
+    var seconds = parseInt(secondsInput.value);
+
+    var timerDisplay = document.getElementById("timer");
+    timerDisplay.innerHTML = seconds;
+
+    var interval = setInterval(function () {
+        seconds--;
+        timerDisplay.innerHTML = seconds;
+
+        if (seconds <= 0) {
+            clearInterval(interval);
+            timerDisplay.innerHTML = "Time's up!";
+        }
+    }, 1000);
+}
 // Thumbnail image controls
 function currentSlide(n) {
     mySlidesFade((slideIndex = n)); // Use mySlidesFade instead of showSlides
