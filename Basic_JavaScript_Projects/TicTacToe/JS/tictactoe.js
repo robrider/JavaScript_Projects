@@ -146,14 +146,6 @@ function checkWinConditions() {
         }
 
         // Function to reset the game
-        function resetGame() {
-            // Reset any necessary variables and clear the board
-            selectedSquares = [];
-            // Clear the canvas
-            let canvas = document.getElementById('win-lines');
-            let c = canvas.getContext('2d');
-            c.clearRect(0, 0, canvas.width, canvas.height);
-        }
 
         //This function checks if an array includes 3 strings. It is used to check for
         //each win condition.
