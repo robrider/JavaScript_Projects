@@ -146,6 +146,14 @@ function checkWinConditions() {
         }
 
         // Function to reset the game
+        function resetGame() {
+            // Reset any necessary variables and clear the board
+            selectedSquares = [];
+            // Clear the canvas
+            let canvas = document.getElementById('win-lines');
+            let c = canvas.getContext('2d');
+            c.clearRect(0, 0, canvas.width, canvas.height);
+        }
 
         //This function checks if an array includes 3 strings. It is used to check for
         //each win condition.
@@ -180,23 +188,27 @@ function checkWinConditions() {
         c.lineWidth = 10;
         c.strokeStyle = "rgba (70, 70, 255, 0.8)";
         c.stroke();
-        if (x1 <= x2 && y1 <= y2) { // conditions for vertical and horizontal animation
-            if (x < x2) (x += 10;}
-            if (y < y2) (y += 10;}
-            if (x >= x2 && y >= y2) (cancelAnimationFrame(animationLoop);}
+
+        while (x1 <= x2 && y1 >= y2) { // conditions for diagonal animation
+            if (x < x2) { x += 10; }
+            if (y > y2) { y -= 10; }
+            if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop); }
         }
-        if (x1 <= x2 && y1 >= y2) { // conditions for diagonal animation
-            if (x < x2) {x += 10;}
-            if (y > y2) (y -= 10;}
-            if (x >= x2 && y <= y2) (cancelAnimationFrame(animationLoop);}
+
+        while (x1 <= x2 && y1 <= y2) { // conditions for vertical and horizontal animation
+            if (x < x2) { x += 10; }
+            if (y < y2) { y += 10; }
+            if (x >= x2 && y >= y2) { cancelAnimationFrame(animationLoop); }
         }
+
+
     }
     function clear() { // function that clears the animation when the game is reset
-    const animationLoop = requestAnimationFrame (clear);
-    c.clearRect(0, 0, 608, 608);
-    cancelAnimationFrame(animationLoop);
+        const animationLoop = requestAnimationFrame(clear);
+        c.clearRect(0, 0, 608, 608);
+        cancelAnimationFrame(animationLoop);
     }
-    disableClick();
+    disableClick()
     audio("./media/applause.mp3");
     animateLineDrawing();
     setTimeout(function () { clear(); resetGame(); }, 1000);
@@ -208,11 +220,4 @@ function resetGame() { // function to reset the game so it doesn't get stuck in 
         square.style.backgroundImage = "";
     }
     selectedSquares = []; // clear array for new game
-}
-
-
-
-
-
-
 }
