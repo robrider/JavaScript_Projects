@@ -6,10 +6,22 @@
     top: 20px; /* Adjust this value to move the container up or down */
 }
 
+/* Center container for the table and canvas */
+.center-container {
+    position: relative;
+}
+
 /* Styling for the game table */
 .game-table {
     border-collapse: collapse;
     border-style: hidden;
+}
+
+/* Styling for the canvas */
+#win-lines {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
 }
 
 /* Styling for individual cells in the table */
@@ -21,6 +33,7 @@
     height: 200px;
     filter: contrast(3);
 }
+
 
 /* Styling for the canvas */
 .game-canvas {

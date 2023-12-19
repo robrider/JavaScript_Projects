@@ -46,6 +46,8 @@ function placeXOrO(squareNumber) {
         }
         //squareNumber and activePlayer are concatenated together and added to array.
         selectedSquares.push(squareNumber + activePlayer);
+        // Call checkWinConditions after each move
+        checkWinConditions();
 
         //This condition is for changing the active player.
         activePlayer = activePlayer === 'X' ? 'O' : 'X';
@@ -107,7 +109,7 @@ function checkWinConditions() {
     // X 6, 4, 2 condition.
     else if (arrayIncludes('6X', '4X', '2X')) { drawWinLine(100, 508, 510, 90) }
     // X 0, 4, 8 condition.
-    else if (arrayIncludes('OX', '4X', '8X')) { drawWinLine(100, 100, 520, 520) }
+    else if (arrayIncludes('0X', '4X', '8X')) { drawWinLine(100, 100, 520, 520) }
     //O 0, 1, 2 condition.
     else if (arrayIncludes('0O', '1O', '2O')) { drawWinLine(50, 100, 558, 100) }
     //O 3, 4, 5 condition.
@@ -124,100 +126,80 @@ function checkWinConditions() {
     else if (arrayIncludes('6O', '4O', '2O')) { drawWinLine(100, 508, 510, 90) }
     // O 0, 4, 8 condition.
     else if (arrayIncludes('0O', '4O', '8O')) { drawWinLine(100, 100, 520, 520) }
+    // Χ 0, 1, 2 condition.
+    if (arrayIncludes('0X', '1X', '2X')) { setWinCoordinates(50, 100, 558, 100); }
+    // X 3, 4, 5 condition.
+    else if (arrayIncludes('3X', '4X', '5X')) { setWinCoordinates(50, 304, 558, 304); }
+    // X 6, 7, 8 condition.
+    else if (arrayIncludes('6X', '7X', '8X')) { setWinCoordinates(50, 508, 558, 508); }
 
-    //This condition checks for a tie. If none of the above conditions are met and
-    //9 squares are selected the code executes. 
+    //This condition checks for a tie. If none of the above conditions are met and 
+    //9 squares are selected the code executes.
     else if (selectedSquares.length >= 9) {
         //This function plays the tie game sound.
         audio('./media/tie.mp3');
+        setTimeout(function () { resetGame(); }, 1000);
+    }
+    // ... (previous code)
 
-
-        // Function to draw a line on the canvas for a winning combination.
-        function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
-            let canvas = document.getElementById('win-lines');
-            let c = canvas.getContext('2d');
-            c.beginPath();
-            c.moveTo(coordX1, coordY1);
-            c.lineTo(coordX2, coordY2);
-            c.strokeStyle = '#ff0000'; // Set line color to red (you can change this)
-            c.lineWidth = 5; // Set line width (you can change this)
-            c.stroke();
-            c.closePath();
+    //This function checks if an array includes 3 strings. It is used to check for each win condition.
+    function arrayIncludes(squareA, squareB, squareC) {
+        const a = selectedSquares.includes(squareA);
+        const b = selectedSquares.includes(squareB);
+        const c = selectedSquares.includes(squareC);
+        if (a === true && b === true && c === true) {
+            return true;
         }
-
-        // Function to reset the game
-        function resetGame() {
-            // Reset any necessary variables and clear the board
-            selectedSquares = [];
-            // Clear the canvas
-            let canvas = document.getElementById('win-lines');
-            let c = canvas.getContext('2d');
-            c.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        //This function checks if an array includes 3 strings. It is used to check for
-        //each win condition.
-        function arrayIncludes(squareA, squareB, squareC) {
-            // These 3 variables will be used to check for 3 in a row.
-            const a = selectedSquares.includes(squareA);
-            const b = selectedSquares.includes(squareB);
-            const c = selectedSquares.includes(squareC);
-            // If the 3 variables we pass are all included in our array, then true is returned.
-            if (a && b && c) {
-                return true;
-            }
-            return false;
-        }
-
-        //This calls a function to check for any win conditions.
-        checkWinConditions();
-
-        for (let i = 0; i < 9; i++) {
-            document.getElementById(i.toString()).style.backgroundImage = '';
-        }
-        // Reset the active player to 'X'.
-        activePlayer = 'X';
+        return false;
     }
 
-    function animateLineDrawing() { // logic for animation
-        const animationLoop = requestAnimationFrame(animateLineDrawing);
-        c.clearRect(0, 0, 608, 608)
+    // Function to set win line coordinates
+    function setWinCoordinates(x1, y1, x2, y2) {
+        // Set the coordinates for the animation
+        window.x1 = x1; // starting x coordinate
+        window.y1 = y1; // starting y coordinate
+        window.x2 = x2; // ending x coordinate
+        window.y2 = y2; // ending y coordinate
+        x = x1; // placeholders
+        y = y1; // placeholders;
+    }
+
+    let winCoordinates = {
+        x1: 0,
+        y1: 0,
+        x2: 0,
+        y2: 0
+    };
+
+    // Function to draw a line on the canvas for a winning combination.
+    function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
+        let canvas = document.getElementById('win-lines');
+        let c = canvas.getContext('2d');
         c.beginPath();
-        c.moveTo(x1, y1);
-        c.lineTo(x, y);
-        c.lineWidth = 10;
-        c.strokeStyle = "rgba (70, 70, 255, 0.8)";
+        c.moveTo(coordX1, coordY1);
+        c.lineTo(coordX2, coordY2);
+        c.strokeStyle = '#ff0000'; // Set line color to red (you can change this)
+        c.lineWidth = 5; // Set line width (you can change this)
         c.stroke();
-
-        while (x1 <= x2 && y1 >= y2) { // conditions for diagonal animation
-            if (x < x2) { x += 10; }
-            if (y > y2) { y -= 10; }
-            if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop); }
-        }
-
-        while (x1 <= x2 && y1 <= y2) { // conditions for vertical and horizontal animation
-            if (x < x2) { x += 10; }
-            if (y < y2) { y += 10; }
-            if (x >= x2 && y >= y2) { cancelAnimationFrame(animationLoop); }
-        }
-
-
+        c.closePath();
     }
-    function clear() { // function that clears the animation when the game is reset
-        const animationLoop = requestAnimationFrame(clear);
-        c.clearRect(0, 0, 608, 608);
-        cancelAnimationFrame(animationLoop);
-    }
-    disableClick()
-    audio("./media/applause.mp3");
-    animateLineDrawing();
-    setTimeout(function () { clear(); resetGame(); }, 1000);
+
 }
 
-function resetGame() { // function to reset the game so it doesn't get stuck in a loop
-    for (let i = 0; i < 9; i++) { // runs loop to clear each square
-        let square = document.getElementById(String(i));
-        square.style.backgroundImage = "";
-    }
-    selectedSquares = []; // clear array for new game
+function clear() { // function that clears the animation when the game is reset const animationLoop requestAnimationFrame (clear); c.clearRect(0, 0, 608, 608);
+    cancelAnimationFrame(animationLoop);
 }
+disableClick()
+audio("./media/applause.mp3");
+animateLineDrawing();
+setTimeout(function () { clear(); resetGame(); }, 1000);
+    }
+
+    function resetGame() {
+        for (let i = 0; i < 9; i++) {
+            let square = document.getElementById(String(i));
+            square.style.backgroundImage = "";
+        }
+        selectedSquares = []; // clear array for a new game
+    }
+
