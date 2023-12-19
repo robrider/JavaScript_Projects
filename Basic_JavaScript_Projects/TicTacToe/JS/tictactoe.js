@@ -51,45 +51,45 @@ function placeXOrO(squareNumber) {
 
         //This condition is for changing the active player.
         activePlayer = activePlayer === 'X' ? 'O' : 'X';
-    }
-    //This function plays placement sound.
-    audio('media/place.mp3');
+    
+        //This function plays placement sound.
+        audio('media/place.mp3');
 
-    //This condition checks to see if it is the computers turn.
-    if (activePlayer === 'O') {
-        //This function disables clicking for computers turn.
-        disableClick();
-        //This function waits 1 second before the computer places an image and enables click.
-        setTimeout(function () {
-            computersTurn();
-            enableClick(); // Make sure to enable click after the computer's turn.
-        }, 1000);
-    }
-
-    //Returning true is needed for our computersTurn() function to work.
-    return true;
-}
-
-//This function results in a random sqaure being selected by the computer.
-function computersTurn() {
-    //This boolean is needed for our while loop.
-    let success = false;
-    //This variable stores a random number 0-8.
-    let pickASquare;
-    //This condition allows our while loop to keep trying if a square is selected already.
-    while (!success) {
-        //A random number between 0 and 8 is selected.
-        pickASquare = String(Math.floor(Math.random() * 9));
-        //If the random number evaluated returns true, the square hasn't been selected yet.
-        if (placeXOrO(pickASquare)) {
-            // This changes our boolean and ends the loop.
-            success = true;
-
+        //This condition checks to see if it is the computers turn.
+        if (activePlayer === 'O') {
+            //This function disables clicking for computers turn.
+            disableClick();
+            //This function waits 1 second before the computer places an image and enables click.
+            setTimeout(function () {
+                computersTurn();
+                enableClick(); // Make sure to enable click after the computer's turn.
+            }, 1000);
         }
-    }
-    enableClick();
-}
 
+        //Returning true is needed for our computersTurn() function to work.
+        return true;
+    }
+
+    //This function results in a random sqaure being selected by the computer.
+    function computersTurn() {
+        //This boolean is needed for our while loop.
+        let success = false;
+        //This variable stores a random number 0-8.
+        let pickASquare;
+        //This condition allows our while loop to keep trying if a square is selected already.
+        while (!success) {
+            //A random number between 0 and 8 is selected.
+            pickASquare = String(Math.floor(Math.random() * 9));
+            //If the random number evaluated returns true, the square hasn't been selected yet.
+            if (placeXOrO(pickASquare)) {
+                // This changes our boolean and ends the loop.
+                success = true;
+
+            }
+        }
+        enableClick();
+    }
+}
 
 //This function parses the selectedSquares array to search for win conditions.
 //drawLine() function is called to draw a line on the screen if the condition is met.
@@ -126,13 +126,7 @@ function checkWinConditions() {
     else if (arrayIncludes('6O', '4O', '2O')) { drawWinLine(100, 508, 510, 90) }
     // O 0, 4, 8 condition.
     else if (arrayIncludes('0O', '4O', '8O')) { drawWinLine(100, 100, 520, 520) }
-    // Χ 0, 1, 2 condition.
-    if (arrayIncludes('0X', '1X', '2X')) { setWinCoordinates(50, 100, 558, 100); }
-    // X 3, 4, 5 condition.
-    else if (arrayIncludes('3X', '4X', '5X')) { setWinCoordinates(50, 304, 558, 304); }
-    // X 6, 7, 8 condition.
-    else if (arrayIncludes('6X', '7X', '8X')) { setWinCoordinates(50, 508, 558, 508); }
-
+    
     //This condition checks for a tie. If none of the above conditions are met and 
     //9 squares are selected the code executes.
     else if (selectedSquares.length >= 9) {
@@ -150,56 +144,62 @@ function checkWinConditions() {
         if (a === true && b === true && c === true) {
             return true;
         }
-        return false;
+       
     }
 
-    // Function to set win line coordinates
-    function setWinCoordinates(x1, y1, x2, y2) {
-        // Set the coordinates for the animation
-        window.x1 = x1; // starting x coordinate
-        window.y1 = y1; // starting y coordinate
-        window.x2 = x2; // ending x coordinate
-        window.y2 = y2; // ending y coordinate
-        x = x1; // placeholders
-        y = y1; // placeholders;
-    }
-
-    let winCoordinates = {
-        x1: 0,
-        y1: 0,
-        x2: 0,
-        y2: 0
-    };
-
-    // Function to draw a line on the canvas for a winning combination.
-    function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
-        let canvas = document.getElementById('win-lines');
-        let c = canvas.getContext('2d');
+}
+    
+        // Function to draw a line on the canvas for a winning combination.
+    function drawWinLine (coordXl, coordYl, coordX2, coordY2) { // animation function 
+    const canvas = document.getElementById("win-lines");
+    const c = canvas.getContext("2d");
+    let x1 = coordX1, // starting x coordinate
+        y1 = coordY1, // starting y coordinate
+        x2 = coordX2, // ending x coordinate
+        y2 = coordY2, // ending y coordinate
+        x = x1, // placeholder
+        y = y1; // placeholders:
+    
+    function animateLineDrawing() { // logic for animation
+        const animationLoop = requestAnimationFrame (animateLineDrawing); 
+        c.clearRect(0, 0, 600, 608)
         c.beginPath();
-        c.moveTo(coordX1, coordY1);
-        c.lineTo(coordX2, coordY2);
-        c.strokeStyle = '#ff0000'; // Set line color to red (you can change this)
-        c.lineWidth = 5; // Set line width (you can change this)
+        c.moveTo(xl, yl);
+        c.lineTo(x, y);
+        c.lineWidth = 10;
+        c.strokeStyle = "rgba(70, 70, 255, 0.5)";
         c.stroke();
-        c.closePath();
-    }
-
-}
-
-function clear() { // function that clears the animation when the game is reset const animationLoop requestAnimationFrame (clear); c.clearRect(0, 0, 608, 608);
-    cancelAnimationFrame(animationLoop);
-}
-disableClick()
-audio("./media/applause.mp3");
-animateLineDrawing();
-setTimeout(function () { clear(); resetGame(); }, 1000);
-    }
-
-    function resetGame() {
-        for (let i = 0; i < 9; i++) {
-            let square = document.getElementById(String(i));
-            square.style.backgroundImage = "";
+        if (xl <= x2 && yl <=y2) { // conditions for vertical and horizontal animation
+        if  (x < x2) {x += 10};
+        if (y > y2) {y -= 10};
+        if (x < x2 && y <= y2) {cancelAnimationFrame (animationLoop);}
         }
-        selectedSquares = []; // clear array for a new game
+        if (x1 <= x2 && y1 >= y2) { // conditions for diagonal animation
+        if (x < x2) {x += 10;}
+        if (y > y2) {y -= 10;}
+        if (x >= x2 && y <= y2) {cancelAnimationFrame (animationLoop);} 
+        }
     }
 
+
+    function clear() { // function that clears the animation when the game is reset const animationLoop requestAnimationFrame (clear); c.clearRect(0, 0, 608, 608);
+        const animationLoop = requestAnimationFrame (clear);
+        c.clearRect(0, 0, 608, 608);
+        cancelAnimationFrame (animationLoop);
+    }
+    disableClick()
+    audio("./media/applause.mp3");
+    animateLineDrawing();
+    setTimeout(function () { clear(); resetGame(); }, 1000);
+}
+
+//This function resets the game in the event of a tie or a win.
+function resetGame() {
+    //This for loop iterates through each HTML square element.
+    for (let i = 0; i < 9; i++) {
+        //This variable gets the HTML element i.
+        let square = document.getElementById(String(i));
+        //This removes our elements backgroundImage. square.style.backgroundImage = '';
+    }
+    //This resets our array so it is empty and we can start over. selectedSquares = [];
+}
