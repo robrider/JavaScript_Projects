@@ -69,7 +69,7 @@ function placeXOrO(squareNumber) {
         //Returning true is needed for our computersTurn() function to work.
         return true;
     }
-
+}
     //This function results in a random sqaure being selected by the computer.
     function computersTurn() {
         //This boolean is needed for our while loop.
@@ -82,6 +82,7 @@ function placeXOrO(squareNumber) {
             pickASquare = String(Math.floor(Math.random() * 9));
             //If the random number evaluated returns true, the square hasn't been selected yet.
             if (placeXOrO(pickASquare)) {
+                placeXOrO(pickASquare);
                 // This changes our boolean and ends the loop.
                 success = true;
 
@@ -89,11 +90,11 @@ function placeXOrO(squareNumber) {
         }
         enableClick();
     }
-}
 
-//This function parses the selectedSquares array to search for win conditions.
-//drawLine() function is called to draw a line on the screen if the condition is met.
-function checkWinConditions() {
+
+    //This function parses the selectedSquares array to search for win conditions.
+    //drawLine() function is called to draw a line on the screen if the condition is met.
+    function checkWinConditions() {
     // Χ 0, 1, 2 condition.
     if (arrayIncludes('0X', '1X', '2X')) { drawWinLine(50, 100, 558, 100) }
     // X 3, 4, 5 condition.
@@ -149,16 +150,16 @@ function checkWinConditions() {
 
 }
     
-        // Function to draw a line on the canvas for a winning combination.
-    function drawWinLine (coordX1, coordY1, coordX2, coordY2) { // animation function 
-    const canvas = document.getElementById("win-lines");
-    const c = canvas.getContext("2d");
-    let x1 = coordX1, // starting x coordinate
-        y1 = coordY1, // starting y coordinate
-        x2 = coordX2, // ending x coordinate
-        y2 = coordY2, // ending y coordinate
-        x = x1, // placeholder
-        y = y1; // placeholders:
+    // Function to draw a line on the canvas for a winning combination.
+function drawWinLine (coordX1, coordY1, coordX2, coordY2) { // animation function 
+const canvas = document.getElementById("win-lines");
+const c = canvas.getContext("2d");
+let x1 = coordX1, // starting x coordinate
+    y1 = coordY1, // starting y coordinate
+    x2 = coordX2, // ending x coordinate
+    y2 = coordY2, // ending y coordinate
+    x = x1, // placeholder
+    y = y1; // placeholders:
     
     function animateLineDrawing() { // logic for animation
         const animationLoop = requestAnimationFrame (animateLineDrawing); 
@@ -173,6 +174,7 @@ function checkWinConditions() {
         if  (x < x2) {x += 10};
         if (y < y2) {y += 10};
         if (x >= x2 && y >= y2) {cancelAnimationFrame (animationLoop);}
+        //clear();  // Call clear function after animation is complete
         }
         if (x1 <= x2 && y1 >= y2) { // conditions for diagonal animation
         if (x < x2) {x += 10;}
@@ -185,10 +187,10 @@ function checkWinConditions() {
     function clear() { // function that clears the animation when the game is reset const animationLoop requestAnimationFrame (clear); c.clearRect(0, 0, 608, 608);
         const animationLoop = requestAnimationFrame (clear);
         c.clearRect(0, 0, 608, 608);
-        cancelAnimationFrame (animationLoop);
+    cancelAnimationFrame (animationLoop);
     }
     disableClick()
-    audio("./media/applause.mp3");
+    audio("media\\polite_applause_09.wav");
     animateLineDrawing();
     setTimeout(function () { clear(); resetGame(); }, 1000);
 }
