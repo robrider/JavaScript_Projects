@@ -201,7 +201,13 @@ function resetGame() {
     for (let i = 0; i < 9; i++) {
         //This variable gets the HTML element i.
         let square = document.getElementById(String(i));
-        //This removes our elements backgroundImage. square.style.backgroundImage = '';
+        //This removes our elements backgroundImage. 
+        square.style.backgroundImage = '';
     }
-    //This resets our array so it is empty and we can start over. selectedSquares = [];
+    //This resets our array so it is empty and we can start over.
+    selectedSquares = [];
+    // Reset the active player to 'X'.
+    //activePlayer = 'X';
+    // Enable clicking for the next move.
+    enableClick();
 }
