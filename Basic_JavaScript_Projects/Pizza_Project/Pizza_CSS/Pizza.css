@@ -1,0 +1,68 @@
+#menuBG {
+width:400px;
+height: 470px;
+margin:10px auto;
+}
+
+#frmMenu {
+width: 400px; 
+height:200px; 
+}
+
+#totalPrice {
+width:200px; 
+height:190px; 
+margin:0 auto; 
+float:right; 
+}
+
+.left {
+width:200px; 
+height:200px; 
+float:left; 
+}
+
+.right {
+width:200px; 
+height:200px; 
+float:right; 
+}
+
+#showText {
+width:200px; 
+height:190px; 
+margin: 0px auto; 
+float:left; 
+}
+
+#cart {
+top:0;margin:0px auto; 
+width: 400px; 
+height:200px; 
+}
+
+#btnOrder {
+margin:10px 0px 0px 100px;
+width:100px;
+height:40px
+}
+
+body {
+background-color: #e20c0c; /* Assign a background color to the body */
+font-family: 'Arial', sans-serif; /* Assign a font family to all text in the body */
+}
+
+h1 {
+    font-family: 'Georgia', serif; /* Assign a font family to all h1 elements */
+    color: #0d0c0c; /* Assign a color to all h1 elements */
+}
+
+h3 {
+    font-family: 'Verdana', sans-serif; /* Assign a font family to all h3 elements */
+    color: #e0f409; /* Assign a color to all h3 elements */
+}
+
+div {
+    font-family: 'Helvetica', sans-serif; /* Assign a font family to all div elements */
+    color: #f8f6f2; /* Assign a color to all div elements */
+}
