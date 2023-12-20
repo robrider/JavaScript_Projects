@@ -150,7 +150,7 @@ function checkWinConditions() {
 }
     
         // Function to draw a line on the canvas for a winning combination.
-    function drawWinLine (coordXl, coordYl, coordX2, coordY2) { // animation function 
+    function drawWinLine (coordX1, coordY1, coordX2, coordY2) { // animation function 
     const canvas = document.getElementById("win-lines");
     const c = canvas.getContext("2d");
     let x1 = coordX1, // starting x coordinate
@@ -164,15 +164,15 @@ function checkWinConditions() {
         const animationLoop = requestAnimationFrame (animateLineDrawing); 
         c.clearRect(0, 0, 600, 608)
         c.beginPath();
-        c.moveTo(xl, yl);
+        c.moveTo(x1, y1);
         c.lineTo(x, y);
         c.lineWidth = 10;
         c.strokeStyle = "rgba(70, 70, 255, 0.5)";
         c.stroke();
-        if (xl <= x2 && yl <=y2) { // conditions for vertical and horizontal animation
+        if (x1 <= x2 && y1 <=y2) { // conditions for vertical and horizontal animation
         if  (x < x2) {x += 10};
-        if (y > y2) {y -= 10};
-        if (x < x2 && y <= y2) {cancelAnimationFrame (animationLoop);}
+        if (y < y2) {y += 10};
+        if (x >= x2 && y >= y2) {cancelAnimationFrame (animationLoop);}
         }
         if (x1 <= x2 && y1 >= y2) { // conditions for diagonal animation
         if (x < x2) {x += 10;}
