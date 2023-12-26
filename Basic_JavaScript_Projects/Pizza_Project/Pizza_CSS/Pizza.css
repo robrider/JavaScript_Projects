@@ -1,11 +1,11 @@
 #menuBG {
-width:400px;
+width:600px;
 height: 470px;
 margin:10px auto;
 }
 
 #frmMenu {
-width: 400px; 
+width: 600px; 
 height:200px; 
 }
 
@@ -21,6 +21,12 @@ width:200px;
 height:200px; 
 float:left; 
 }
+
+.center {
+    width:200px; 
+    height:200px; 
+    float:left; 
+    }
 
 .right {
 width:200px; 
