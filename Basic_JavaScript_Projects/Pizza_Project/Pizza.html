@@ -8,12 +8,14 @@
     <link rel="stylesheet" type="text/css" href="Pizza_CSS/Pizza.css"/>
 </head>
 <body>
+    <!-- Container for the pizza menu -->
     <div id="menuBG">
         <h1 style="margin:0 0px 0 40px;">Pizza Drill Tutorial</h1>
         <input id="btnOrder" type="button" onclick="getReceipt ()"
             value="Place Order">
         <form id="frmMenu">
             <div class="menu left">
+              <!-- Column for the selection of pizza size -->
                <h3>Size:</h3>
                 <input class="size" type="radio" name="Size"
                     value="Personal Pizza">Personal Pizza<br>
@@ -26,6 +28,7 @@
                 <input class="size" type="radio" name="Size"
                 value="Extra Large Pizza">Extra Large Pizza<br>
             </div>
+            <!-- Center column for vegetable toppings -->
             <div class="menu center">
                 <h3>Vegetables:</h3>
                 <input class="toppings" type="checkbox" name="Topping"
@@ -41,6 +44,7 @@
                 <input class="toppings" type="checkbox" name="Topping" 
                     value="Garlic">Garlic<br>
                 </div>
+                <!-- Right column for meat toppings -->
             <div class="menu right">
                 <h3>Meats:</h3>
                 <input class="toppings" type="checkbox" name="Topping"
