@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
 </head>
 <body>
 
 <script>
+  // jQuery code begins when the document is ready
   $(document).ready(function() {
+    // Append HTML elements to the body
     $("html").append(
       "<div id='container'>" +
         "<div id='inner'>" +
@@ -18,10 +21,34 @@
       "</div>"
     );
 
+    // Apply CSS styling to element with ID "2"
     $("#2").css({"color": "red"});
 
+    // Add a click event to element with ID "3"
     $("#3").click(function() {
+      // Hide the h1 element inside the "inner" div
       $('#inner h1').hide();
+    });
+
+    // Add the element with ID "hidden"
+    $("body").append("<h1 style='text-align:center; color:white;' id='hidden'>I was hidden!</h1>");
+
+    // Add a hover event to element with ID "hidden"
+    $("#hidden").hover(
+      function() {
+        // Change text color to black when hovering
+        $(this).css("color", "black");
+      },
+      function() {
+        // Toggle visibility with a slow animation when the hover ends
+        $(this).toggle('slow');
+      }
+    );
+
+    // Add a click event to button element
+    $("button").click(function() {
+      // Show an alert when the button is clicked
+      alert("I'm alerting you");
     });
   });
 </script>
