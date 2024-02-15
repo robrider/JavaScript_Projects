@@ -8,6 +8,9 @@
         <title>Robert Harter</title>
         <link rel="shortcut icon" type="img/jpg" href="Images\coding_icon.webp">
         <link rel="stylesheet" type="text/css" href="CSS\portfolio.css">
+        <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     </head>
 
     <!-- Body -->
@@ -70,11 +73,11 @@
                         <img class="Slideshow_Images" src="images/Python.png" alt="Python logo">
                         <div class="text">the popular programming language Python,</div>
                     </div>
-                    <!-- Slide 4 of 6 -->
+                    <!-- Slide 4 of 6 
                     <div class="mySlides fade">
                         <img class="Slideshow_Images" src="images/C_Sharp_and_Dot_NET.png" alt="C# logo">
                         <div class="text">C#, .NET Framework, ASP.NET, MVC, </div>
-                    </div>
+                    </div> -->
                     <!-- Slide 5 of 6 -->
                     <div class="mySlides fade">
                         <img class="Slideshow_Images" src="images/SQL_and_Database.jpg" alt="SQL logo"> 
@@ -103,40 +106,43 @@
             </div>
         </div>
 
-        <!-- About section -->
-        <div class="Row" id="About">
-            <!-- Left column -->
-            <div class="Column_2">
-                <img src="Images\laptop_at_the_office.webp" alt="Replace with a picture of your choosing">
+        <div class="container">
+            <!-- About section -->
+            <div class="row" id="About">
+                <!-- Left column -->
+                <div class="col-md-6">
+                    <h1>About</h1>
+                    <p>
+                        In tandem with my enthusiasm for coding, I've seamlessly woven my love for gravel cycling and traveling into the fabric of my life. Much like the intricacies of coding, gravel cycling represents a dynamic and challenging journey where adaptability and problem-solving skills are crucial. The thrill of exploring new terrains on my bike resonates with the creative exploration inherent in coding.
+                        <br>
+                        <br>I am a graduate of <a href="https://www.learncodinganywhere.com" target="_blank">The Tech Academy</a>’s Software Developer Boot Camp, and trained and experienced in the following web and programming languages: HTML, CSS, JavaScript, and more. 
+                        <br>
+                        <br>I am a full-stack developer and would love to work with you on your project. <a onclick="openForm()" class="contact">Contact</a> me below!
+                    </p>
+                </div>
+                <!-- Right column -->
+                <div class="col-md-6">
+                    <img src="Images\laptop_at_the_office.webp" alt="Replace with a picture of your choosing">
+                </div>
             </div>
-            <!-- Right column -->
-            <div class="Column_1">
-                <h1>About</h1>
-                <p>
-                    In tandem with my enthusiasm for coding, I've seamlessly woven my love for gravel cycling and traveling into the fabric of my life. Much like the intricacies of coding, gravel cycling represents a dynamic and challenging journey where adaptability and problem-solving skills are crucial. The thrill of exploring new terrains on my bike resonates with the creative exploration inherent in coding.
-                    <br>
-                    <br>I am a graduate of <a href="https://www.learncodinganywhere.com" target="_blank">The Tech Academy</a>’s Software Developer Boot Camp, and trained and experienced in the following web and programming languages: HTML, CSS, JavaScript, and more. 
-                    <br>
-                    <br>I am a full-stack developer and would love to work with you on your project. <a onclick="openForm()" class="contact">Contact</a> me below!
-                </p>
+        
+            <!-- GitHub section -->
+            <div class="row" id="GitHub">
+                <!-- Left column -->
+                <div class="col-md-6">
+                    <h1>GitHub</h1>
+                    <p>You can view my coding projects on my GitHub profile here:
+                        <br>
+                        <p class="center"><a href="https://github.com/robrider" target="_blank">The Tech Academy Github</a></p>
+                    </p>
+                </div>
+                <!-- Right column -->
+                <div class="col-md-6">
+                    <a href="https://github.com/the-tech-academy" target="_blank"><img src="images/GitHub.png"></a>
+                </div>
             </div>
         </div>
-
-        <!-- GitHub section -->
-        <div class="Row" id="GitHub">
-            <!-- Left column -->
-            <div class="Column_1">
-                <h1>GitHub</h1>
-                <p>You can view my coding projects on my GitHub profile here:
-                    <br>
-                    <p class="center"><a href="https://github.com/robrider" target="_blank">The Tech Academy Github</a></p>
-                </p>
-            </div>
-            <!-- Right column -->
-            <div class="Column_2">
-                <a href="https://github.com/the-tech-academy" target="_blank"><img src="images/GitHub.png"></a>
-            </div>
-        </div>
+        
 
         <!-- Contact form -->
         <div id="Contact">
@@ -163,6 +169,13 @@
         <footer>
                 <p class="center">&copy Prosper Consulting Inc., <a href="https://www.learncodinganywhere.com/" target="_blank">The Tech Academy</a></p><br>
         </footer>
+
+        <!--Add bootstrap to edit portfolio-->
         <script src="JS\portfolio.js"></script>
+        <script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+        </script>
+
     </body>
 </html>
